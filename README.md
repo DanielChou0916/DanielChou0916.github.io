@@ -5,5 +5,5 @@
 - 💻 Tech Stack: Python | C++ | MOOSE | Matlab | ABAQUS | Latex
 - 🛠️ Working on: Phase-Field Model for Geotechnical Applications
 
-📫 Reach me: [LinkedIn](https://linkedin.com/in/yourname) 
+📫 Reach me: [LinkedIn](https://linkedin.com/in/daniel-t-chou-1b51661b2) 
 
