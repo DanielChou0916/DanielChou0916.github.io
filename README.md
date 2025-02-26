@@ -1,7 +1,7 @@
 <h1 align="center">Hi there, I'm Daniel Chou 👋</h1>
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=0088CC&center=true&vCenter=true&multiline=true&width=650&height=65&lines=Computational+Geomechanics+Ph.D.;Finite+Element+Analysis+%7C+Phase-Field;FEM+%7C+Data+Science" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=0088CC&center=true&vCenter=true&multiline=true&width=650&height=65&lines=Computational+Geomechanics+Ph.D.;Finite+Element+Analysis+%7C+Data+Science" alt="Typing SVG" />
 </p>
 
 
