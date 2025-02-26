@@ -9,26 +9,14 @@
 
 ## 🌟 About Me
 - 🎓 **Ph.D. in Computational Geomechanics**  
-- 🏗 **Research Interests:** Finite Element Analysis, Phase-Field Fracture, Poromechanics, Artificial Intelligence  
+- 🏗 **Research Interests:** Finite Element Analysis, Multi-Physics Numerical Simulation, Applied Artificial Intelligence  
 - 💻 **Tech Stack:** Python | C++ | MOOSE | MATLAB | ABAQUS | LaTeX  
 - 🛠 **Currently Working on:** Phase-Field Model for Geotechnical Applications  
 
 ---
 
-## 📊 GitHub Stats
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=DanielChou0916&show_icons=true&theme=tokyonight&count_private=true" height="150" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=DanielChou0916&layout=compact&theme=tokyonight" height="150" />
-  <br>
-  <img src="https://streak-stats.demolab.com?user=DanielChou0916&theme=tokyonight" height="150" />
-</p>
 
----
-
-## 🎬 Featured Projects
-🔬 [**NonLinear Variational Autoencoder**](https://github.com/DanielChou0916/NLVAE)  
-📊 [**Mutual Information and Transfer Entropy**](https://github.com/DanielChou0916/mutual-information-and-transfer-entropy)  
-💡 [**Exfoliation Fracture Analysis**]:Pending()  
+## 🎬 Featured Projects(click me!!)(https://danielchou0916.github.io/)
 
 ---
 
@@ -40,5 +28,13 @@
 
 ---
 
-<img align="right" alt="Coding" width="400" src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif">
+## 📊 GitHub Stats
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=DanielChou0916&show_icons=true&theme=tokyonight&count_private=true" height="80" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=DanielChou0916&layout=compact&theme=tokyonight" height="80" />
+  <br>
+  <img src="https://streak-stats.demolab.com?user=DanielChou0916&theme=tokyonight" height="80" />
+</p>
+
+---
 
