@@ -36,7 +36,6 @@
 <p align="left">
   <a href="https://linkedin.com/in/daniel-t-chou-1b51661b2"><img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=Linkedin&logoColor=white"/></a>
   <a href="https://scholar.google.com/citations?user=YOURID"><img src="https://img.shields.io/badge/-Google%20Scholar-4285F4?style=flat-square&logo=Google%20Scholar&logoColor=white"/></a>
-  <a href="https://yourwebsite.com"><img src="https://img.shields.io/badge/-Website-FF5722?style=flat-square&logo=Google-Chrome&logoColor=white"/></a>
 </p>
 
 ---
