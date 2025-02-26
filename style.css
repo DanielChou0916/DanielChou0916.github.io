@@ -34,3 +34,38 @@ hr {
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin: 20px 0;
 }
+
+/* ---- About Me 變成雙欄對齊 ---- */
+.about-me {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    text-align: left;
+    max-width: 600px;
+    margin: auto;
+}
+
+.about-label {
+    font-weight: bold;
+    color: #00A3FF;
+}
+
+.about-value {
+    text-align: left;
+}
+
+/* ---- GitHub Stats 縮小 & 移到底部 ---- */
+.github-stats {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.github-stats img.small-stat {
+    width: 250px;
+    height: auto;
+    margin: 5px;
+}
+
+.small-text {
+    font-size: 18px;
+    color: #cccccc;
+}
