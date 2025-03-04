@@ -16,7 +16,7 @@
 ---
 
 
-## 🎬 Featured Projects(click me!!)(https://danielchou0916.github.io/)
+## 🎬 Featured Projects[(click me!!)](https://danielchou0916.github.io/)
 
 ---
 
