@@ -1,48 +1,67 @@
-/* Dark Mode Theme */
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background-color: #1e1e1e; /* 暗色背景 */
-    color: #ffffff; /* 文字改成白色 */
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-}
-
-/* Headings */
-h1 {
-    color: #0ff; /* 藍綠色 */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0F2027, #203A43, #2C5364);
+    color: white;
     text-align: center;
 }
 
-h2 {
-    color: #00bfff; /* 深藍色 */
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Links */
+h1, h2 {
+    color: #00A3FF;
+}
+
 a {
-    color: #ffa500; /* 橘色 */
+    color: #FFB400;
     text-decoration: none;
+    font-weight: bold;
 }
 
 a:hover {
-    text-decoration: underline;
-    color: #ff4500; /* 深橘色 */
+    color: #FFD700;
 }
 
-/* Horizontal Rule */
 hr {
-    border: 1px solid #555;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
 }
 
-/* List Items */
-ul {
-    list-style-type: none;
-    padding: 0;
+/* ---- About Me 變成雙欄對齊 + 優化標題樣式 ---- */
+.about-me {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    text-align: left;
+    max-width: 650px;
+    margin: auto;
+    row-gap: 10px; /* 調整行距 */
 }
 
-ul li {
-    margin-bottom: 10px;
+.about-label {
+    font-weight: bold;
+    color: #00A3FF;
+    display: flex;
+    align-items: center; /* 讓圖示和文字對齊 */
+    font-size: 18px;
+}
+
+.about-label img {
+    width: 22px; /* 調整圖示大小 */
+    height: 22px;
+    margin-right: 8px; /* 增加圖示與文字的間距 */
+}
+
+.about-value {
+    text-align: left;
+    font-size: 17px;
+    color: #ffffff;
+    line-height: 1.5;
 }
