@@ -9,6 +9,46 @@
 <body>
 
     <h1 align="center">🌟 Benchmarks 1:2D Uniaxial Compression on Composite Material</h1>
+
+    <!-- MathJax for LaTeX Support -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
+    <!-- Milestone Section -->
+    <h2 align="center">🚀 Milestone Achieved!</h2>
+    <p>
+        I’ve been wanting to test out the <strong>Finite-epsilon model</strong> by implementing it in an open-source framework and running it myself.
+        In <strong>phase-field fracture mechanics</strong>, material failure is typically represented by introducing a damage variable \( d \) into a diffusion equation.
+        To differentiate between <strong>tensile and shear failure</strong>, a common approach is to extract part of the elastic strain energy to drive the evolution of \( d \).
+    </p>
+    
+    <p>
+        However, many traditional decomposition methods—such as <strong>stress deviatoric decomposition</strong> and <strong>stress spectral decomposition</strong>—struggle with convergence, particularly under <strong>uniaxial compression</strong>.
+        In these cases, residual errors persist, forcing the time step size to drop to extreme levels (as low as <strong>\(1e-8\)</strong>).
+        Even with <strong>all 16 cores</strong> of my personal computer running, the simulation barely progressed <strong>2 mm in two days</strong>.
+    </p>
+    
+    <p>
+        While literature offers numerous alternative energy split methods, most come with significant trade-offs.
+        Some <em>lack mathematical rigor</em>, while others are so complex that implementing them requires dealing with <strong>excessive if-else conditions</strong>,
+        making the code unwieldy and prone to <strong>numerical instability</strong>.
+        Many of these approaches feel more like quick-fix solutions aimed at boosting publication counts rather than well-founded models.
+    </p>
+    
+    <p>
+        In contrast, the <strong>Finite-epsilon model</strong> is the only one that successfully ran to completion in my tests. 🎯
+    </p>
+    
+    <!-- Key Highlights -->
+    <h3>Key Highlights:</h3>
+    <ul>
+        <li>✅ <strong>Micro-structural damage evolution</strong></li>
+        <li>✅ <strong>Coupled system: Equilibrium + Phase-field fracture model</strong></li>
+        <li>✅ <strong>Boundary conditions: Regular uniaxial compression</strong></li>
+        <li>✅ <strong>Tested across different frameworks</strong></li>
+    </ul>
+
     
     <!-- 插入 GIF 圖片，確保 GIF 存在於你的專案資料夾 -->
     <p align="center">
