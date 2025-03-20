@@ -1,0 +1,48 @@
+/* Dark Mode Theme */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #1e1e1e; /* 暗色背景 */
+    color: #ffffff; /* 文字改成白色 */
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Headings */
+h1 {
+    color: #0ff; /* 藍綠色 */
+    text-align: center;
+}
+
+h2 {
+    color: #00bfff; /* 深藍色 */
+}
+
+/* Links */
+a {
+    color: #ffa500; /* 橘色 */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #ff4500; /* 深橘色 */
+}
+
+/* Horizontal Rule */
+hr {
+    border: 1px solid #555;
+}
+
+/* List Items */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
