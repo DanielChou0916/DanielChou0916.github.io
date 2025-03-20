@@ -18,7 +18,7 @@ body {
 
 
 .sub-container {
-    max-width: 1100px; /* 保持較大寬度 */
+    max-width: 1050px; /* 保持較大寬度 */
     margin: auto; /* 讓內容水平置中 */
     padding: 35px; /* 內邊距，避免內容貼邊 */
     background: rgba(255, 255, 255, 0.1); /* 設定白底 */
