@@ -14,51 +14,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;  /* 讓所有內容預設居中 */
 }
-.container ul {
-    list-style: none;  /* 移除預設圓點 */
-    padding: 0;
-    text-align: left;   /* 讓內容左對齊 */
-}
-
-.container li {
-    padding: 8px 0;    /* 給清單元素一些間距 */
-}
-
-.items-list {
-    list-style: none;
-    padding: 0;
-    max-width: 700px; /* 控制最大寬度 */
-    margin: auto;
-}
-
-.items-list li {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* 圖標與文字之間的間距 */
-    background: rgba(255, 255, 255, 0.1); /* 添加背景來增強可視性 */
-    padding: 10px;
-    border-radius: 5px;
-    width: 100%; /* 讓所有 li 保持同樣寬度 */
-    text-align: left;
-}
-
-.items-list a {
-    flex-grow: 1; /* 讓連結填滿可用空間 */
-    text-decoration: none;
-    color: #FFB400;
-    font-weight: bold;
-}
-
-.items-list a:hover {
-    color: #FFD700;
-}
-
-
-
-
-
 
 h1, h2 {
     color: #00A3FF;
@@ -79,8 +35,52 @@ hr {
     margin: 20px 0;
 }
 
+.table {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    text-align: left;
+    max-width: 700px;
+    margin: auto;
+    row-gap: 10px; /* 調整行距 */
+}
 
-.side-note {
+.about-label {
+    font-weight: bold;
+    color: #00A3FF;
+    display: flex;
+    align-items: center; /* 讓圖示和文字對齊 */
+    font-size: 18px;
+}
+
+.about-label img {
+    width: 22px; /* 調整圖示大小 */
+    height: 22px;
+    margin-right: 8px; /* 增加圖示與文字的間距 */
+}
+
+.about-value {
+    text-align: left;
+    font-size: 17px;
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+/* 針對所有 ul 移除點點 */
+ul {
+    list-style: none; /* 移除點點 (bullet points) */
+    padding-left: 0; /* 確保列表內容靠左 */
+}
+
+/* 讓列表內容每一行佔同樣的寬度 */
+ul li {
+    display: flex;
+    align-items: center; /* 讓 emoji 與文字對齊 */
+    justify-content: center; /* 讓內容置中 */
+    width: 100%; /* 讓所有 li 都等寬 */
+}
+
+
+.note {
     background: rgba(255, 255, 255, 0.1);
     padding: 15px;
     border-radius: 10px;
@@ -92,7 +92,7 @@ hr {
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
 }
 
-.back-button {
+.button {
     display: inline-block;
     background: #FFB400;
     color: black;
@@ -104,7 +104,7 @@ hr {
     transition: 0.3s ease;
 }
 
-.back-button:hover {
+.button:hover {
     background: #FFD700;
 }
 
