@@ -17,10 +17,13 @@ body {
 }
 
 .sub-container {
-    max-width: 900px; /* 控制寬度 */
+    max-width: 1000px; /* 控制寬度 */
     margin: auto; /* 讓內容水平居中 */
     text-align: left; /* 讓文字靠左 */
     line-height: 1.5; /* 減少行距 */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 h1, h2 {
