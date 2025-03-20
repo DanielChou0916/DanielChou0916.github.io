@@ -65,3 +65,18 @@ hr {
     color: #ffffff;
     line-height: 1.5;
 }
+
+/* 針對所有 ul 移除點點 */
+ul {
+    list-style: none; /* 移除點點 (bullet points) */
+    padding-left: 0; /* 確保列表內容靠左 */
+}
+
+/* 讓列表內容每一行佔同樣的寬度 */
+ul li {
+    display: flex;
+    align-items: center; /* 讓 emoji 與文字對齊 */
+    justify-content: center; /* 讓內容置中 */
+    width: 100%; /* 讓所有 li 都等寬 */
+}
+
