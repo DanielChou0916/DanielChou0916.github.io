@@ -16,14 +16,15 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+
 .sub-container {
-    max-width: 1000px; /* 控制寬度 */
-    margin: auto; /* 讓內容水平居中 */
-    text-align: left; /* 讓文字靠左 */
-    line-height: 1.5; /* 減少行距 */
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 1200px; /* 保持較大寬度 */
+    margin: auto; /* 讓內容水平置中 */
+    padding: 20px; /* 內邊距，避免內容貼邊 */
+    background: rgba(255, 255, 255, 0.1); /* 設定白底 */
+    border-radius: 10px; /* 圓角 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 陰影 */
+    text-align: left; /* 確保文字靠左 */
 }
 
 h1, h2 {
