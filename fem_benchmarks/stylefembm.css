@@ -16,6 +16,13 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+.sub-container {
+    max-width: 900px; /* 控制寬度 */
+    margin: auto; /* 讓內容水平居中 */
+    text-align: left; /* 讓文字靠左 */
+    line-height: 1.5; /* 減少行距 */
+}
+
 h1, h2 {
     color: #00A3FF;
 }
