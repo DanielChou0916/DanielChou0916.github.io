@@ -26,22 +26,35 @@ body {
     padding: 8px 0;    /* 給清單元素一些間距 */
 }
 
+.items-list {
+    list-style: none;
+    padding: 0;
+    max-width: 700px; /* 控制最大寬度 */
+    margin: auto;
+}
+
 .items-list li {
     display: flex;
     align-items: center;
-    gap: 10px; /* 圖標和文字間隔 */
-    font-size: 18px;
+    gap: 10px; /* 圖標與文字之間的間距 */
+    background: rgba(255, 255, 255, 0.1); /* 添加背景來增強可視性 */
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%; /* 讓所有 li 保持同樣寬度 */
+    text-align: left;
 }
 
-.items-list li a {
-    color: #FFB400;
+.items-list a {
+    flex-grow: 1; /* 讓連結填滿可用空間 */
     text-decoration: none;
+    color: #FFB400;
     font-weight: bold;
 }
 
-.items-list li a:hover {
+.items-list a:hover {
     color: #FFD700;
 }
+
 
 
 
