@@ -103,27 +103,12 @@ ul li {
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
 }
 
-.button {
-    display: inline-block;
-    background: #FFB400;
-    color: black;
-    padding: 10px 15px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
-
-.button:hover {
-    background: #FFD700;
-}
 
 
 .button-container {
     display: flex;
     justify-content: center; /* 水平置中 */
-    gap: 20px; /* 設定按鈕間距 */
+    gap: 250px; /* 設定按鈕間距 */
     flex-wrap: wrap; /* 讓按鈕在小螢幕時自動換行 */
     margin: 20px 0;
 }
