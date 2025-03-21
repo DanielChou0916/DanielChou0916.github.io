@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FEM Benchmarks  | Daniel Chou</title>
+    <title>FEM Benchmarks 2 | Daniel Chou</title>
     <link rel="stylesheet" href="../../stylefembm.css">
 </head>
 <body>
@@ -15,26 +15,36 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
     
-    <!-- Milestone Section -->
-    <h2>🚀 Complicated loading path</h2>
+    <!-- Complex Loading Path Section -->
+    <h2>🚀 Complex Loading Path in Geomaterials Testing</h2>
     <p>
-      For common geomaterials laboratory test, triaxial compression provides the most complicated boundary conditions, i.e., the most complex loading path in pure mechanical system🎯
-      Hence, the it's worthy to test to see if the numerical model can reflect material strength under this setting. As simulations here are 2D, the scenario become biaxial.
-      Different cinfining prossure sets are adopted, with lateral confining pressure(x direction) and axial displacement(y direction) to generate deviatoric stress.
+        Triaxial compression tests provide one of the most complex boundary conditions in geomaterial laboratory testing, representing a <strong>challenging loading path</strong> in purely mechanical systems. 🎯  
+        For numerical simulations, verifying whether a model can accurately capture <strong>material strength</strong> under such conditions is crucial.  
+        Since these simulations are conducted in <strong>2D</strong>, the problem is simplified to a <strong>biaxial compression scenario</strong>.
     </p>
     
-    <!-- Key Highlights -->
-    <h2>🚀Key Highlights:</h2>
     <p>
-        ✅ <strong>Micro-structural damage evolution</strong>
+        In this study, <strong>different confining pressure settings</strong> are applied:<br>
+        ✅ <strong>Lateral confining pressure</strong> (along the x-direction).<br>
+        ✅ <strong>Axial displacement control</strong> (along the y-direction) to induce deviatoric stress.
+    </p>
+    
+    <!-- Key Highlights Section -->
+    <h2>🔑 Key Highlights</h2>
+    <p>
+        ✅ <strong>Microstructural damage evolution</strong> modeled using the phase-field fracture method.
     </p>
     <p>
-        ✅ <strong>Coupled system: Equilibrium + Phase-field fracture model</strong>
+        ✅ <strong>Coupled system:</strong> Equilibrium equations + Phase-field fracture model.
     </p>
     <p>
-        ✅ <strong>Boundary conditions: Biaxial compression</strong>
+        ✅ <strong>Boundary conditions:</strong> Biaxial compression simulation.
     </p>
-    </ul>
+    <p>
+        ⚠️ <strong>Note:</strong> Since deformation is relatively large in this scenario, a <strong>finite strain formulation</strong> may be required in practice.  
+        However, for simplicity, the current simulation adopts a <strong>small strain assumption</strong>.
+    </p>
+
     <!-- 插入 GIF 圖片，確保 GIF 存在於你的專案資料夾 -->
     <p align="center">
         <img src="" alt="uc_ss" width="1000">
