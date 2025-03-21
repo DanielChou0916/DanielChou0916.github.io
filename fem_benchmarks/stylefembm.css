@@ -108,7 +108,7 @@ ul li {
 .button-container-start {
     display: flex;
     justify-content: center; /* 水平置中 */
-    gap: 500px; /* 設定按鈕間距 */
+    gap: 505px; /* 設定按鈕間距 */
     flex-wrap: wrap; /* 讓按鈕在小螢幕時自動換行 */
     margin: 20px 0;
 }
