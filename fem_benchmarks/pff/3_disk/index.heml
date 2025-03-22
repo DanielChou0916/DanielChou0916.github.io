@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FEM Benchmarks 3 | Daniel Chou</title>
+  <link rel="stylesheet" href="../../stylefembm.css" />
+  
+  <!-- MathJax LaTeX Support -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body>
+  <div class="sub-container">
+    <h1 align="center">🌟 2D Thermal-Induced Fracture Simulation</h1>
+
+    <!-- Description Section -->
+    <h2>🚀 Granite Disk Thermal-Induced Fracture</h2>
+    <p>
+      A benchmark example is conducted on a 2D plane strain granite disk.  
+      The outer radius is \( R_{\text{out}} = 1 \) m, and the inner heated circular region has a radius of \( R_{\text{in}} = 0.2 \) m.
+    </p>
+
+    <!-- System and BCs -->
+    <h2>🚀 Multi-Physics System and Boundary Conditions</h2>
+    <p align="center">
+      <img src="bm3.png" alt="mtbcs" width="1000">
+    </p>
+
+    <!-- Key Highlights -->
+    <h2>🔑 Key Highlights</h2>
+    <p>✅ <strong>Implementation of coupling system by loosely coupled setting.</strong></p>
+    <p>✅ <strong>Manually established interaction between thermal and phase field systems.</strong></p>
+    <p>⚠️ <strong>Note:</strong> While using loosely coupled systems may compromise accuracy, extra care on convergence criteria is required.  
+      In this case, the nonlinear residual tolerance is set to \( 1 \times 10^{-7} \).
+    </p>
+
+    <!-- GIF: Primary Variables -->
+    <p align="center">
+      <img src="primary_variables.gif" alt="primarys" width="1000">
+    </p>
+
+    <!-- GIF: Material Response -->
+    <h2>🚀 Simulation Behavior Comparison</h2>
+    <p align="center">
+      <img src="material_response.gif" alt="responses" width="1000">
+    </p>
+
+    <!-- Navigation Buttons -->
+    <hr>
+    <div class="button-container-mid">
+      <a href="https://danielchou0916.github.io/fem_benchmarks/" class="button">📌 Back to my FEA space</a>
+      <a href="https://danielchou0916.github.io/fem_benchmarks/pff/2_biaxial/" class="button">🔙 Back to Benchmark 2</a>
+      <a href="https://danielchou0916.github.io/fem_benchmarks/pff/4_/" class="button">⏭️ Next Benchmark (Not completed yet)</a>
+    </div>
+    <hr>
+  </div>
+</body>
+</html>
