@@ -34,6 +34,16 @@
     <h2>🔑 Key Highlights</h2>
     <p>✅ <strong>Implementation of coupling system by loosely coupled setting.</strong></p>
     <p>✅ <strong>Manually established interaction between thermal and phase field systems.</strong></p>
+    <p>
+  ⚠️ <strong>Note:</strong> Any physical system is associated with a corresponding energy contribution, which can enter the phase-field fracture governing equation as part of the local driving force term. This is often written as:  
+  \[
+  \frac{\partial \Psi_{\text{loc}}}{\partial d} = \frac{\partial \Psi_{\text{elastic}}}{\partial d} + \frac{\partial \Psi_{\text{fracture}}}{\partial d} + \frac{\partial \Psi_{\text{other}}}{\partial d}
+  \]
+  where \(\Psi_{\text{other}}\) may represent additional physics such as thermal energy (\(\Psi_{\text{thermal}}\)) or fluid energy (\(\Psi_{\text{fluid}}\)) in porous flow systems.
+  However, in a physical sense, thermally induced fracture arises primarily from the <strong>thermal stress</strong>, not from the temperature itself. As a result, it is common practice to <strong>exclude</strong> \(\Psi_{\text{thermal}}\) from the governing phase-field equation.  
+  Instead, temperature-dependent material parameters (e.g., conductivity in the present case) are coupled with the damage variable \(d\), capturing the thermal effects indirectly but effectively.
+</p>
+
     <p>⚠️ <strong>Note:</strong> While using loosely coupled systems may compromise accuracy, extra care on convergence criteria is required.  
       In this case, the nonlinear residual tolerance is set to \( 1 \times 10^{-7} \).
     </p>
