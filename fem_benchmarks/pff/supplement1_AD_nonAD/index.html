@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplemental 1 | Daniel Chou</title>
+    <link rel="stylesheet" href="../../stylefembm.css">
+</head>
+<body>
+<div class="sub-container">
+    <h1 align="center">🌟 Why We Need Automatic Differentiation?</h1>
 
+    <!-- MathJax for LaTeX Support -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <!-- AD Introduction Section -->
+    <h2>🚀 A High-Efficiency Computational Graph-Based Approach</h2>
+    <p>
+        Automatic Differentiation (AD) is a computational technique that efficiently evaluates derivatives using a computational graph.
+        Unlike symbolic or numerical differentiation, AD provides exact derivatives up to machine precision while remaining efficient.
+        In the context of Finite Element Method (FEM), AD is especially beneficial for <strong>Jacobian matrix computation</strong>, which is essential for solving nonlinear systems.
+    </p>
+    <p>
+        In this benchmark, a simple shear test with an initial defect is used to illustrate the computational improvement of AD over traditional methods.
+        A more complex scenario — 2D biaxial compression with 5 MPa confining pressure — is also included to demonstrate real-world performance.
+    </p>
+
+    <hr>
+
+    <h2>🧪 Simple Shear Test on Square Domain with Initial Defect</h2>
+
+    <h3 align="center">Automatic Differentiation</h3>
+    <p align="center">
+        <img src="Automatic Differentiation.gif" alt="sheargifAD" width="1000">
+    </p>
+
+    <h3 align="center">Non-Automatic Differentiation</h3>
+    <p align="center">
+        <img src="Non Automatic Differentiation.gif" alt="sheargifNonAD" width="1000">
+    </p>
+
+    <h3 align="center">Convergence Comparison</h3>
+    <p align="center">
+        <img src="shear_convergence_comparison.png" alt="shear" width="1000">
+    </p>
+
+    <p>
+        ✅ <strong>Non-AD simulation typically requires a small time step, around \( \Delta t \approx 10^{-5} \), significantly increasing computation time.</strong><br>
+        ✅ <strong>AD simulation is more stable and supports adaptive stepping with larger \( \Delta t \), reducing run time without losing accuracy.</strong><br>
+        ✅ <strong>In the simple shear test, non-AD simulation took ~0.4 hours, nearly twice as long as the AD version.</strong><br>
+    </p>
+
+    <hr>
+
+    <h2>🧪 Biaxial Compression Test (5 MPa Confining Pressure)</h2>
+    <p>
+        ✅ <strong>In this complex benchmark with confining boundaries (<p>See more on <a href="https://danielchou0916.github.io/fem_benchmarks/pff/2_biaxial/"> benchmark 2</a>.</p>
+), AD significantly improves convergence.</strong><br>
+        ✅ <strong>AD simulation completed a 5s simulation in ~5 hours. In contrast, the non-AD version was stuck at 0.5s after 16 hours and was eventually terminated.</strong><br>
+    </p>
+    <p align="center">
+        <img src="bi5MPa_convergence_comparison.png" alt="bi5MPa" width="1000">
+    </p>
+
+    <hr>
+
+    <div class="button-container-mid">
+        <a href="https://danielchou0916.github.io/fem_benchmarks/" class="button">📌 Back to my FEA space</a>
+        <!-- <a href="https://danielchou0916.github.io/fem_benchmarks/pff/3_disk/" class="button">⏭️ Next Benchmark</a> -->
+    </div>
+
+    <hr>
+</div>
+</body>
+</html>
