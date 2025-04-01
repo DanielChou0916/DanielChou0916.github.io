@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplemental 2 | Daniel Chou</title>
+    <link rel="stylesheet" href="../../stylefembm.css">
+</head>
+<body>
+<div class="sub-container">
+    <h1 align="center">📘 Effect of Crack Geometric Function</h1>
+
+    <!-- MathJax for LaTeX Support -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <!-- Crack Geometric Function Section -->
+    <h2>🚀 Range of Diffusion</h2>
+    <p>
+      The general form of the crack geometric function is:
+      \[
+        \alpha(d) = \xi d + (1 - \xi) d^2 \quad \text{with} \; \xi \in [0, 2], \; d \in [0, 1]
+      \]
+      where \( \xi \) is a tuning parameter controlling the linear–quadratic weighting. A normalization coefficient \( c_0 \) is typically defined as:
+      \[
+        c_0 = 4 \int_0^1 \sqrt{\alpha(\hat{d})} \, d\hat{d} > 0
+      \]
+    </p>
+
+    <p>
+      In this benchmark, no energy decomposition is used — instead, the <strong>finite epsilon model</strong> is adopted (see <a href="https://danielchou0916.github.io/fem_benchmarks/pff/1_comparisons/">Benchmark 1</a>). The setup is based on a biaxial compression test with 5 MPa lateral pressure (see <a href="https://danielchou0916.github.io/fem_benchmarks/pff/2_biaxial/">Benchmark 2</a>), and all simulations are run with <strong>automatic differentiation (AD)</strong> enabled (see <a href="https://danielchou0916.github.io/fem_benchmarks/pff/supplement1_AD_nonAD/">Supplement 1</a>).
+    </p>
+
+    <p>
+      The energy degradation function used is:
+      \[
+        \omega(d) = \frac{(1 - d)^p}{(1 + p_0 d)^q}
+      \]
+      with \( p = q = 2 \), \( p_0 = 0 \).  
+      - When \( \xi = 0 \): this is known as the <strong>AT2</strong> model.  
+      - When \( \xi = 1 \): the <strong>AT1</strong> model.  
+      - When \( \xi = 2 \): we refer to it as the <strong>Cohesive Phase-Field (CPF)</strong> model, though the true CPF model often involves more complex degradation functions parameterized by material data.
+    </p>
+
+    <hr>
+
+    <h2>🧪 Results Demonstration</h2>
+
+    <h3>Mechanical Behavior</h3>
+    <p align="center">
+      <img src="crack_geometric_function.gif" alt="Crack Geometric Function Effects" width="1000">
+    </p>
+
+    <h3>Stress-Strain Curves</h3>
+    <p align="center">
+      <img src="shear_convergence_comparison.png" alt="Stress-Strain" width="1000">
+    </p>
+
+    <p>
+      ✅ <strong>Higher \( \xi \) increases macro strength (i.e., higher peak stress).</strong><br>
+      ✅ <strong>The finite epsilon model was originally designed for AT1; using AT1 avoids unnecessary confusion.</strong><br>
+      ✅ <strong>AT2 exhibits more diffuse damage instead of localized cracks — consistent with theory (bandwidth \( D_u = \infty \)).</strong>
+    </p>
+
+    <hr>
+
+    <h2>❓ How about other \( \xi \) values?</h2>
+    <p>
+      ✅ <strong>\( \xi = 0, 1, 2 \) are common because the integral \( c_0 \) has closed-form analytical solutions in these cases.</strong><br>
+      ✅ <strong>For arbitrary values (e.g., \( \xi = 1.5 \)), \( \sqrt{\alpha(d)} \) becomes nontrivial, requiring numerical integration.</strong><br>
+      ✅ <strong>Such values are mathematically valid but require careful explanation and calibration.</strong>
+    </p>
+
+    <hr>
+
+    <div class="button-container-mid">
+        <a href="https://danielchou0916.github.io/fem_benchmarks/" class="button">📌 Back to my FEA space</a>
+    </div>
+
+    <hr>
+</div>
+</body>
+</html>
