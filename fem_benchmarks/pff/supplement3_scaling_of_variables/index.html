@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplemental 3 | Daniel Chou</title>
+    <link rel="stylesheet" href="../../stylefembm.css">
+</head>
+<body>
+<div class="sub-container">
+    <h1 align="center">📘 Scaling Impact on Multi-Physics Simulations</h1>
+
+    <!-- MathJax for LaTeX Support -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <!-- Multi-Physics System -->
+    <h2>🚀 Diversity of Residual</h2>
+    <p>
+        In multi-physics systems, multiple governing equations with their corresponding primary variables are solved simultaneously. Due to differences in scale and physical nature, 
+        the residual magnitudes of these variables often vary significantly.
+    </p>
+
+    <p>
+      In this example, a <a href="https://danielchou0916.github.io/fem_benchmarks/pff/supplement1_AD_nonAD/">hydraulic fracture test</a> is performed.  
+      The simulation couples three physical processes: phase-field fracture, mechanical equilibrium (momentum balance), and pore pressure diffusion (fluid conservation in porous media).  
+      In 2D, there are four primary variables: phase-field damage \( d \), displacements \( u_x \) and \( u_y \), and pore pressure \( p_w \).  
+      Three cases are compared:
+      <ul>
+        <li><strong>No scaling</strong></li>
+        <li><strong>Auto-scaling</strong></li>
+        <li><strong>Manual scaling</strong> with \( d = 5 \times 10^{-3} \), \( u_x, u_y = 1 \times 10^{-4} \), and \( p_w = 1 \times 10^{-5} \)</li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <h2>🧪 Convergence Demonstration</h2>
+
+    <h3>Manually Tuned Scaling: Successfully captures the crack propagation process driven by increasing pore pressure.</h3>
+    <p align="center">
+      <img src="Manually Tuned Scaling_intact.gif" alt="Tuned Scaling" width="1000">
+    </p>
+
+    <h3>No Scaling: Simulation stuck just before the side crack touches the pre-existing fracture.</h3>
+    <p align="center">
+      <img src="No Scaling (Original)_intact.gif" alt="No Scaling" width="1000">
+    </p>
+
+    <h3>Time Step and Computational Cost Comparison</h3>
+    <p align="center">
+      <img src="sup3_convergence.png" alt="costs" width="1000">
+    </p>
+
+    <p>
+      ✅ <strong>The auto-scaling option in MOOSE was also tested. While the GIF is not shown here, the performance was similarly poor as in the no-scaling case.</strong><br>
+      ✅ <strong>In both the no-scaling and auto-scaling cases, the time step size shrinks to approximately \(10^{-7}\) to \(10^{-8}\), leading to extremely high computational costs and overall failure to converge.</strong><br>
+      ✅ <strong>In contrast, the manually tuned scaling case successfully continues past 35 seconds, with visible crack propagation, demonstrating acceptable convergence.</strong>
+    </p>
+
+    <hr>
+
+    <h2>❓ How to Determine Variable Scaling</h2>
+    <p>  
+      ✅ <strong>1. Set <code>show_var_residual_norms = true</code> in the <code>[Debug]</code> block of your input file.</strong><br>
+      ✅ <strong>2. Limit steps for testing by setting <code>num_steps = 3</code>.</strong><br>
+      ✅ <strong>3. Run the simulation and examine the residuals of each variable printed in the terminal.</strong><br>
+      ✅ <strong>4. Adjust scaling values accordingly.</strong><br>
+      ✅ <strong>5. Repeat the above steps until convergence behavior improves.</strong><br><br>
+      🔎 <strong>Note:</strong> Avoid setting the scale of the phase-field variable \( d \) too low, as it may prevent damage from evolving. Start with a scale of 1 and reduce only if convergence issues arise. 
+      If issues persist, double-check your material properties and boundary conditions.
+    </p>
+
+    <hr>
+
+    <div class="button-container-mid">
+        <a href="https://danielchou0916.github.io/fem_benchmarks/" class="button">📌 Back to my FEA space</a>
+    </div>
+
+    <hr>
+</div>
+</body>
+</html>
