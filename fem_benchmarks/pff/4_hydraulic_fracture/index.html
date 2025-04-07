@@ -25,17 +25,17 @@
       The model solves three governing equations: phase field fracture (PF), mechanical equilibrium, and pore pressure balance. Their interactions are summarized as:
     </p>
 
-    <p><strong>Equilibrium ↔ Pore Pressure Balance:</strong><br>
+    <p><strong>🔁 Equilibrium ↔ Pore Pressure Balance:</strong><br>
     &nbsp;&nbsp;• \( \mathbf{u} \) affects \( \nabla \cdot \dot{\mathbf{u}} \) in the fluid equation.<br>
     &nbsp;&nbsp;• \( p_w \) is used to calculate trial effective stress \( \sigma_0' \), which goes into PF.
     </p>
     
-    <p><strong>Pore Pressure Balance ↔ Phase Field:</strong><br>
+    <p><strong>🔁 Pore Pressure Balance ↔ Phase Field:</strong><br>
     &nbsp;&nbsp;• \( d \) affects porosity, Biot’s coefficient, and modulus \( M(d) \).<br>
     &nbsp;&nbsp;• \( p_w \) contributes to fluid driving energy \( \Psi_{\text{fluid}} \) in PF.
     </p>
     
-    <p><strong>Equilibrium ↔ Phase Field:</strong><br>
+    <p><strong>🔁 Equilibrium ↔ Phase Field:</strong><br>
     &nbsp;&nbsp;• \( \mathbf{u} \) provides elastic energy \( \Psi_{\text{elastic}} \) and extra driving force \( c_e \) in PF.<br>
     &nbsp;&nbsp;• \( d \) weakens \( \sigma_0' \) to compute degraded effective stress \( \sigma' \), and total stress \( \sigma \).
     </p>
