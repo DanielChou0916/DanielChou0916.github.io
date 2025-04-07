@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FEM Benchmarks 4 | Daniel Chou</title>
+  <link rel="stylesheet" href="../../stylefembm.css" />
+  
+  <!-- MathJax LaTeX Support -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<body>
+  <div class="sub-container">
+    <h1 align="center">💧 2D Hydraulic Fracture Simulation in Saturated Media</h1>
+
+    <!-- Description Section -->
+    <h2>🚀 Crack Extension via Fluid Injection</h2>
+    <p>
+      A 0.5m × 1m domain is used to observe how fluid injection interacts with a pre-existing crack. The pore pressure is linearly increased from 0 to 45 MPa over time. 
+      Boundary conditions: bottom \( u_y \) and left \( u_x \) are fixed, with vertical stress \( \sigma_v = -10 \) MPa applied on the top and horizontal stress \( \sigma_h = -5 \) MPa on the right.<br><br>
+
+      The model solves three governing equations: phase field fracture (PF), mechanical equilibrium, and pore pressure balance. Their interactions are summarized as:
+    </p>
+
+    <ul>
+      <li><strong>Equilibrium ↔ Pore Pressure Balance:</strong><br>
+      - \( \mathbf{u} \) affects \( \nabla \cdot \dot{\mathbf{u}} \) in the fluid equation.<br>
+      - \( p_w \) is used to calculate trial effective stress \( \sigma_0' \), which goes into PF.</li><br>
+
+      <li><strong>Pore Pressure Balance ↔ Phase Field:</strong><br>
+      - \( d \) affects porosity, Biot’s coefficient, and modulus \( M(d) \).<br>
+      - \( p_w \) contributes to fluid driving energy \( \Psi_{\text{fluid}} \) in PF.</li><br>
+
+      <li><strong>Equilibrium ↔ Phase Field:</strong><br>
+      - \( \mathbf{u} \) provides elastic energy \( \Psi_{\text{elastic}} \) and extra driving force \( c_e \) in PF.<br>
+      - \( d \) weakens \( \sigma_0' \) to compute degraded stress \( \sigma' \), and total stress \( \sigma \).</li>
+    </ul>
+
+    <!-- System and BCs -->
+    <h2>🚀 Multi-Physics System and Boundary Conditions</h2>
+    <p align="center">
+      <img src="hydraulic_fracture_couple.png" alt="mtbcs" width="1000">
+    </p>
+
+    <!-- Key Highlights -->
+    <h2>🔑 Key Highlights</h2>
+    <p>✅ <strong>Equilibrium and pore pressure are fully coupled. PF model is loosely coupled with the rest.</strong></p>
+    <p>✅ <strong>Custom implementation of interaction between PF and fluid system.</strong></p>
+    <p>⚠️ <strong>Note 1:</strong> Main simulation uses non-AD + sub-app uses AD. Convergence is only achieved after <a href="https://danielchou0916.github.io/fem_benchmarks/pff/supplement3_scaling_of_variables">manually tuning the variable scales</a>.</p>
+    <p>⚠️ <strong>Note 2:</strong> Negative pore pressure is manually restricted: \( p_w \geq 0 \).</p>
+
+    <!-- Analysis Components -->
+    <h2>🔍 Analysis Entries</h2>
+    <p>✅ <strong>AT1 and Cohesive Phase Field (CPF) models are used. See <a href="https://danielchou0916.github.io/fem_benchmarks/pff/supplement2_crack_geometric">Crack Geometric Function effects</a> for details.</strong></p>
+    <p>✅ <strong>Two permeability models are tested:</strong></p>
+    <ol>
+      <li><strong>Directional Permeability:</strong><br>
+      \[
+      \mathbf{K}_w = \mathbf{K}_{w(0)} + A(\mathbf{I} - \mathbf{n}_d \otimes \mathbf{n}_d), \quad A = \phi^2 d^2 l^2
+      \]</li>
+      <li><strong>Exponential Permeability:</strong><br>
+      \[
+      \mathbf{K}_w = \mathbf{K}_{w(0)} \exp(A), \quad A = (c_1 d)^{c_2}, \text{ with } c_1 = 2.5, c_2 = 3.5
+      \]</li>
+    </ol>
+
+    <!-- GIFs -->
+    <h2>📊 Simulation Results</h2>
+
+    <h3>Directional Permeability with AT1</h3>
+    <p align="center">
+      <img src="Directional Permeability and AT1_intact.gif" alt="Dir_AT1" width="1000">
+    </p> 
+    <h3>Exponential Permeability with AT1</h3>
+    <p align="center">
+      <img src="Exponential Permeability and AT1_intact.gif" alt="Exp_AT1" width="1000">
+    </p> 
+    <h3>Directional Permeability with CPF</h3>
+    <p align="center">
+      <img src="Directional Permeability and CPF_intact.gif" alt="Dir_CPF" width="1000">
+    </p> 
+
+    <h3>Convergence Comparison</h3>
+    <p align="center">
+      <img src="bm4_convergence.png" alt="convergeHFtest" width="1000">
+    </p> 
+
+    <p>
+      ✅ <strong>Negative \( K_{xy} \) shows up in directional permeability because it alters normal and tangential crack flow directions. It's expressed in global coordinates.</strong><br>
+      ✅ <strong>Here, \( \mathbf{n}_d \approx \nabla d / |\nabla d| \) is used as a quick estimate. More accurate approaches exist but are more tedious and code-heavy.</strong><br>
+      ✅ <strong>Exponential permeability gives the best efficiency — it takes only ~1 hr to simulate 40 seconds of hydraulic fracture here.</strong><br>
+      ✅ <strong>In directional cases, CPF cracks grow slightly slower than AT1, which is consistent with our <a href="https://danielchou0916.github.io/fem_benchmarks/pff/supplement2_crack_geometric">previous observation</a>.</strong><br>
+      ✅ <strong>In practice, this difference is tiny. Focus should instead be on choosing appropriate material parameters and BCs.</strong>
+    </p>
+
+    <!-- Navigation Buttons -->
+    <hr>
+    <div class="button-container-mid">
+      <a href="https://danielchou0916.github.io/fem_benchmarks/" class="button">📌 Back to my FEA space</a>
+      <a href="https://danielchou0916.github.io/fem_benchmarks/pff/3_disk/" class="button">🔙 Back to Benchmark 3</a>
+      <a href="https://danielchou0916.github.io/fem_benchmarks/pff/5_/" class="button">⏭️ Next Benchmark (pending)</a>
+    </div>
+    <hr>
+  </div>
+</body>
+</html>
