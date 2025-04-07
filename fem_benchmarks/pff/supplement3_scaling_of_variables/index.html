@@ -69,6 +69,16 @@
       🔎 <strong>Note:</strong> Avoid setting the scale of the phase-field variable \( d \) too low, as it may prevent damage from evolving. Start with a scale of 1 and reduce only if convergence issues arise. 
       If issues persist, double-check your material properties and boundary conditions.
     </p>
+    
+    <h2>❓ Negative Pore Pressure?</h2>
+    <p>
+      ✅ <strong>This simulation assumes fully saturated conditions.</strong><br>
+      ✅ <strong>The occurrence of negative pore pressure during crack propagation is a known numerical artifact rather than a physically realistic phenomenon.</strong><br>
+      ✅ <strong>This issue has been documented in prior research, such as in <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2021JB022509">this study</a>.</strong><br>
+      ✅ <strong>One rigorous solution is to use a mixed hybrid finite element (MFE) formulation, which solves for both the primary variables (e.g., pressure) and secondary variables (e.g., flux) simultaneously.</strong><br>
+      ✅ <strong>Alternatively, a simpler approach is to enforce a lower bound on pore pressure (e.g., \(p_w \geq 0\)), explicitly disallowing negative values.</strong><br><br>
+      🔎 <strong>Note:</strong> Both approaches—using MFE or applying lower-bound constraints—can negatively impact convergence. Careful tuning of solver parameters is often required. And of course, if pore pressure isn’t the main concern—for example, if you're mainly interested in displacement and damage—it’s usually fine to ignore this condition.
+    </p>
 
     <hr>
 
