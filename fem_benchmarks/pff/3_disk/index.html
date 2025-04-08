@@ -21,9 +21,27 @@
     <p>
       A benchmark example is conducted on a 2D plane strain granite disk.  
       The outer radius is \( R_{\text{out}} = 1 \) m, and the inner heated circular region has a radius of \( R_{\text{in}} = 0.2 \) m.
-      The inner region has higher thermal expansion conefficient \( \alpha_{t(\text{in})} = 4.3e-5\)m/m-C than outer region \( \alpha_{t(\text{out})} = 3.5e-5\)m/m-C, and cracks are not allowed to happend in inner part!
+      The inner region has higher thermal expansion conefficient \( \alpha_{t(\text{in})} = 4.3e-5\)m/m-C than outer region \( \alpha_{t(\text{out})} = 3.5e-5\)m/m-C, and cracks are not allowed to happend in inner part!<br><br>
+
+      The model solves three governing equations: phase field fracture (PF), mechanical equilibrium, and heat conduction equation. Their interactions are summarized as:
+    </p>
+    
+    <p><strong>🔁 Equilibrium ↔ Heat Conduction Equation:</strong><br>
+    &nbsp;&nbsp;• \( \mathbf{u} \) contributes to total strain \( \epsilon = \nabla^{\text{sym}}\mathbf{u} \).<br>
+    &nbsp;&nbsp;• Temperature \( \theta \) is used to compute the trial undamaged stress \( \sigma_0 \), which is passed into the phase-field model.
+    </p>
+    
+    <p><strong>🔁 Heat Conduction Equation ↔ Phase Field:</strong><br>
+    &nbsp;&nbsp;• The damage variable \( d \) affects thermal conductivity \( k \), which is assumed to drop to 2% of the intact value when fully damaged.<br>
+    &nbsp;&nbsp;• In some models, the energy release rate \( G_c \) depends on \( d \) or \( \theta \), but that’s typically for high-temperature scenarios — not considered here.
+    </p>
+    
+    <p><strong>🔁 Equilibrium ↔ Phase Field:</strong><br>
+    &nbsp;&nbsp;• \( \mathbf{u} \) feeds into phase-field through the elastic energy \( \Psi_{\text{elastic}} \) and an additional driving force term \( c_e \).<br>
+    &nbsp;&nbsp;• The damage field \( d \) then degrades \( \sigma_0 \) to compute the final stress \( \sigma \).
     </p>
 
+    
     <!-- System and BCs -->
     <h2>🚀 Multi-Physics System and Boundary Conditions</h2>
     <p align="center">
