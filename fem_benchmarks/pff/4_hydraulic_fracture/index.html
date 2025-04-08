@@ -10,6 +10,43 @@
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
+<style>
+  .lightbox-img {
+    cursor: pointer;
+    border: 2px solid #444;
+    max-width: 100%;
+    height: auto;
+    transition: 0.3s;
+  }
+  .lightbox-img:hover {
+    opacity: 0.8;
+  }
+  .lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 50px;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+  }
+  .lightbox-modal img {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: 80vh;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+</style>
 </head>
 
 <body>
@@ -73,16 +110,18 @@
 
     <h3>Directional Permeability with AT1</h3>
     <p align="center">
-      <img src="Directional Permeability and AT1_intact.gif" alt="Dir_AT1" width="1000">
-    </p> 
+      <img src="Directional Permeability and AT1_intact.gif" alt="Dir_AT1" class="lightbox-img" onclick="openLightbox(this)">
+    </p>
+    
     <h3>Exponential Permeability with AT1</h3>
     <p align="center">
-      <img src="Exponential Permeability and AT1_intact.gif" alt="Exp_AT1" width="1000">
-    </p> 
+      <img src="Exponential Permeability and AT1_intact.gif" alt="Exp_AT1" class="lightbox-img" onclick="openLightbox(this)">
+    </p>
+    
     <h3>Directional Permeability with CPF</h3>
     <p align="center">
-      <img src="Directional Permeability and CPF_intact.gif" alt="Dir_CPF" width="1000">
-    </p> 
+      <img src="Directional Permeability and CPF_intact.gif" alt="Dir_CPF" class="lightbox-img" onclick="openLightbox(this)">
+    </p>
 
     <h3>Convergence Comparison</h3>
     <p align="center">
@@ -106,5 +145,19 @@
     </div>
     <hr>
   </div>
+
+<div id="lightboxModal" class="lightbox-modal" onclick="this.style.display='none'">
+  <span class="lightbox-close" onclick="document.getElementById('lightboxModal').style.display='none'">&times;</span>
+  <img id="lightboxContent">
+</div>
+
+<script>
+  function openLightbox(img) {
+    const modal = document.getElementById('lightboxModal');
+    const modalImg = document.getElementById('lightboxContent');
+    modal.style.display = "block";
+    modalImg.src = img.src;
+  }
+</script>
 </body>
 </html>
