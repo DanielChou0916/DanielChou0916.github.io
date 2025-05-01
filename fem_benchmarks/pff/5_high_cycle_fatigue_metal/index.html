@@ -43,7 +43,7 @@
 
 <body>
   <div class="sub-container">
-    <h1 align="center">🥱 2D High-Cycle Fatigue by Different Energy Formulations</h1>
+    <h1 align="center">🗜️ 2D High-Cycle Fatigue🥱 by Different Energy Formulations</h1>
 
     <!-- Description Section -->
     <h2>🚀 Fatigue Mechanism in Phase Field Fracture</h2>
@@ -62,15 +62,15 @@
       \]
     </p>
     <p>
-      ✅ This effectively applies \( f(\bar\alpha) \) to the original fracture toughness \( G_{c(0)} \), resulting in:
+      🔑 This effectively applies \( f(\bar\alpha) \) to the original fracture toughness \( G_{c(0)} \), resulting in:
       \[
       G_c = f(\bar\alpha) G_{c(0)}
       \]
-      ✅ Since \( \kappa = \frac{2lf(\bar\alpha)G_{c(0)}}{c_0} \) and \( \Psi_{\text{fracture}} = \frac{f(\bar\alpha)G_{c(0)}}{c_0 l} \alpha(d) \), this scaling is consistently applied across both stiffness and energy terms.
-      ✅ The additional gradient term \( \nabla \kappa \cdot \nabla d \) emerges because \( \kappa \) becomes a spatially varying quantity as \( f(\bar\alpha) \) evolves over the domain.
+      🔑 Since \( \kappa = \frac{2lf(\bar\alpha)G_{c(0)}}{c_0} \) and \( \Psi_{\text{fracture}} = \frac{f(\bar\alpha)G_{c(0)}}{c_0 l} \alpha(d) \), this scaling is consistently applied across both stiffness and energy terms.
+      🔑 The additional gradient term \( \nabla \kappa \cdot \nabla d \) emerges because \( \kappa \) becomes a spatially varying quantity as \( f(\bar\alpha) \) evolves over the domain.
     </p>
     
-    <h3>⚠️ Fatigue Degradation Function \( f(\bar\alpha) \)</h3>
+    <h3>⚙️ Fatigue Degradation Function \( f(\bar\alpha) \)</h3>
     <p>
       \[
       f(\bar\alpha) =
@@ -84,7 +84,7 @@
       where \( \alpha_{\text{critical}} = 62.5 \, \text{MPa} \). This function gradually reduces fracture toughness after the accumulated fatigue energy \( \bar\alpha \) exceeds the threshold, mimicking the progressive weakening observed in real materials.
     </p>
     
-    <h3>⚠️ Fatigue Accumulation \( \bar\alpha \)</h3>
+    <h3>⚙️ Fatigue Accumulation \( \bar\alpha \)</h3>
     <p>
       The fatigue history variable \( \bar\alpha \) is updated using the Incremental Cycle-based Linear Accumulation (ICLA) rule:
       \[
@@ -93,7 +93,7 @@
       where \( \Psi^f_t \) is the instantaneous fatigue energy and \( \Delta N_t = N_t - N_{t-1} \) is the increment in cycle count.
     </p>
     
-    <h3>⚠️ Instantaneous Fatigue Energy \( \Psi^f_t \)</h3>
+    <h3>⚙️ Instantaneous Fatigue Energy \( \Psi^f_t \)</h3>
     <p>Three formulations are available to compute \( \Psi^f_t \):</p>
     
     <p><strong>1. Mean Load Approach</strong> (default):</p>
@@ -131,7 +131,7 @@
     </p>
 
   <!-- Key Highlights -->
-  <h2>🔑 Key Highlights</h2>
+  <h3>📋 Benchmark Configuration</h3>
   <p>✅ <strong>This is a metallic material with \(E = 210\,\text{GPa}\), \(\nu = 0.3\). Therefore, the AT2 model is adopted, i.e., \(\alpha(d) = d^2\) and \(c_0 = 2\).</strong></p>
   <p>✅ <strong>The simulation includes 38,000 cycles to evaluate fatigue-induced degradation.</strong></p>
   <p>✅ <strong>Stress spectral decomposition is used to split the elastic energy into activated and inactivated components.</strong></p>
