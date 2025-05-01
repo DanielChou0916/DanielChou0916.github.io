@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FEM Benchmarks 5 | Daniel Chou</title>
+  <link rel="stylesheet" href="../../stylefembm.css" />
+  
+  <!-- MathJax LaTeX Support -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+<style>
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+  }
+  .lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+  }
+  .close {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+  <div class="sub-container">
+    <h1 align="center">🥱 2D High-Cycle Fatigue by Different Energy Formulations</h1>
+
+    <!-- Description Section -->
+    <h2>🚀 Fatigue Mechanism in Phase Field Fracture Mechanics</h2>
+    <p>
+      The modified phase field governing equation to account for fatigue effect can be formulated by introducing a fatigue degradation function \(f(\bar\alpha)\):  
+      \(\dot d = -L\left(\frac{\partial \Psi_{\text{loc}}}{\partial d} - \kappa(\bar\alpha)\Delta d - \nabla\kappa(\bar\alpha) \cdot \nabla d\right)\),  
+      where \(\Psi_{\text{loc}} = \omega(d)\Psi_{\text{activate}} + f(\bar\alpha)\Psi_{\text{fracture}}\).  
+      Basically, this is equivalent to applying \(f(\bar\alpha)\) to the original critical energy release rate \(G_{c(0)}\), i.e., \(G_c = f(\bar\alpha)G_{c(0)}\).
+    </p>
+    <p>
+      ✅ <strong>The fatigue degradation function</strong> is defined as:
+      \[
+        f(\bar{\alpha}) = \begin{cases}
+          1, & \bar{\alpha} \leq \alpha_{\text{critical}} \\
+          \left( \frac{2 \alpha_{\text{critical}}}{\bar{\alpha} + \alpha_{\text{critical}}} \right)^2, & \bar{\alpha} > \alpha_{\text{critical}}
+        \end{cases}
+      \]
+      where \( \alpha_{\text{critical}} = 62.5\,\text{MPa} \).<br>
+      This function gradually reduces the material toughness once the accumulated fatigue energy \( \bar{\alpha} \) exceeds the critical threshold.  
+      In early stages, \( f(\bar{\alpha}) = 1 \), meaning no degradation. Once \( \bar{\alpha} > \alpha_{\text{critical}} \), the toughness smoothly drops, which mimics fatigue-induced weakening.
+    </p>
+    <p>
+      Fatigue accumulation, denoted by \(\bar\alpha\), is computed using an incremental cycle-based linear accumulation rule. At a specific step \(t\), it is defined as:  
+      \(\bar\alpha_t = \bar\alpha_{t-1} + \Psi^f_t \times \Delta N_t\),  
+      where \(\Psi^f_t\) is the instantaneous fatigue energy at step \(t\), and \(\Delta N_t = N_t - N_{t-1}\) is the increment in cycle count.
+    </p>
+    
+    <p>
+      Three different fatigue energy formulations are used to compute \(\Psi^f_t\):
+      <br><br>
+      1. `mean_load`: *(Default mode)*  
+         \(\Psi_t = 2E\epsilon_{\text{max}}^2\left(\frac{1+R}{2}\right)^2\left(\frac{1+R}{2}\right)^n\)  
+         where \(\epsilon_{\text{max}}\) is the maximum principal strain. Requires user-defined loading ratio \(R\) and exponent \(n\) in the material block.
+      <br><br>
+      2. `elastic_energy`:  
+         \(\Psi_t = 0.5 \boldsymbol{\sigma} : \boldsymbol{\epsilon}\)
+      <br><br>
+      3. `spectral_activation`:  
+         \(\Psi_t = 0.5 \boldsymbol{\sigma}^+ : \boldsymbol{\epsilon}\),  
+         where \(\boldsymbol{\sigma}^+\) is the tensile-activated component from spectral decomposition.
+    </p>
+    <!-- System and BCs -->
+    <h2>🚀 Multi-Physics System and Boundary Conditions</h2>
+    <p align="center">
+      <img src="fatigueICLABC.png" alt="mtbcs" style="width: 100%; max-width: 1000px; height: auto;">
+    </p>
+
+  <!-- Key Highlights -->
+  <h2>🔑 Key Highlights</h2>
+  <p>✅ <strong>This is a metallic material with \(E = 210\,\text{GPa}\), \(\nu = 0.3\). Therefore, the AT2 model is adopted, i.e., \(\alpha(d) = d^2\) and \(c_0 = 2\).</strong></p>
+  <p>✅ <strong>Stress spectral decomposition is used to split the elastic energy into activated and inactivated components.</strong></p>
+  <p>⚠️ <strong>Note 1:</strong> The energy terms are scaled by fatigue degradation: \(\kappa = f(\bar\alpha)\frac{2G_{c(0)}l}{c_0}\) and \(\frac{1}{c_0}\frac{f(\bar\alpha)G_{c(0)}}{l}\alpha(d)\). This is equivalent to applying \(f(\bar\alpha)\) directly to \(G_{c(0)}\).</p>
+  <p>⚠️ <strong>Note 2:</strong> Reminder: \(\bar\alpha\) denotes accumulated fatigue energy, while \(\alpha(d)\) is the crack geometric function.</p>
+
+    <!-- GIFs -->
+    <h2>📊 Simulation Results (Click figure to see animation)</h2>
+  <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
+  
+    <div style="flex: 1 1 30%; max-width: 330px; text-align: center;">
+      <img src="thumbs/Mean Load Based Fatigue_thumb.png" style="width: 100%; height: auto; cursor: pointer;"
+           alt="ML" onclick="openLightbox('Mean Load Based Fatigue_intact.gif')">
+      <p><strong>Mean Load Based Approach</strong><br></p>
+    </div>
+  
+    <div style="flex: 1 1 30%; max-width: 330px; text-align: center;">
+      <img src="thumbs/Elastic Energy Based Fatigue_thumb.png" style="width: 100%; height: auto; cursor: pointer;"
+           alt="EE" onclick="openLightbox('Elastic Energy Based Fatigue_intact.gif')">
+      <p><strong>Elastic Energy Based Approach</strong><br></p>
+    </div>
+  
+    <div style="flex: 1 1 30%; max-width: 330px; text-align: center;">
+      <img src="thumbs/Spectral Activation Fatigue_thumb.png" style="width: 100%; height: auto; cursor: pointer;"
+           alt="SA" onclick="openLightbox('Spectral Activation Fatigue_intact.gif')">
+      <p><strong>Spectral Activation Approach</strong><br></p>
+    </div>
+  
+  </div>
+
+
+  <p align="center">
+    <img src="fatigue_result.png" alt="different_fatigue_energy" style="width: 100%; max-width: 1000px; height: auto;">
+  </p>
+  <p align="center"><strong>Performance Comparison</strong></p>
+
+
+  <p>
+    ✅ <strong>The macro-mechanical behaviors are approximately the same.</strong><br>
+    ✅ <strong>The mean load approach offers greater flexibility by adjusting load ratio \(R\) and exponential coefficient \(n\).</strong><br>
+    ✅ <strong>The reason why \(f(\bar\alpha)\) doesn’t spread to the left is because the pre-existing crack absorbs most of the deformation there, leading to minimal fatigue degradation.</strong>
+  </p>
+
+
+    <!-- Navigation Buttons -->
+    <hr>
+    <div class="button-container-mid">
+      <a href="https://danielchou0916.github.io/fem_benchmarks/" class="button">📌 Back to my FEA space</a>
+      <a href="https://danielchou0916.github.io/fem_benchmarks/pff/4_hydraulic_fracture/" class="button">🔙 Back to Benchmark 3</a>
+      <a href="https://danielchou0916.github.io/fem_benchmarks/pff/6_/" class="button">⏭️ Next Benchmark (pending)</a>
+    </div>
+    <hr>
+  </div>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close">&times;</span>
+  <img class="lightbox-content" id="lightbox-img">
+</div>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById("lightbox").style.display = "block";
+    document.getElementById("lightbox-img").src = src;
+  }
+</script>
+
+</body>
+</html>
