@@ -73,17 +73,26 @@
     
     <p>
       Three different fatigue energy formulations are used to compute \(\Psi^f_t\):
-      <br><br>
-      1. `mean_load`: *(Default mode)*  
-         \(\Psi_t = 2E\epsilon_{\text{max}}^2\left(\frac{1+R}{2}\right)^2\left(\frac{1+R}{2}\right)^n\)  
-         where \(\epsilon_{\text{max}}\) is the maximum principal strain. Requires user-defined loading ratio \(R\) and exponent \(n\) in the material block.
-      <br><br>
-      2. `elastic_energy`:  
-         \(\Psi_t = 0.5 \boldsymbol{\sigma} : \boldsymbol{\epsilon}\)
-      <br><br>
-      3. `spectral_activation`:  
-         \(\Psi_t = 0.5 \boldsymbol{\sigma}^+ : \boldsymbol{\epsilon}\),  
-         where \(\boldsymbol{\sigma}^+\) is the tensile-activated component from spectral decomposition.
+    <p><strong>1. <code>Mean Load Approach</code></strong>:<br>
+    \[
+    \Psi_t = 2E\epsilon_{\text{max}}^2 \left(\frac{1+R}{2}\right)^2 \left(\frac{1+R}{2}\right)^n
+    \]<br>
+    where \( \epsilon_{\text{max}} \) is the maximum principal strain. Requires user-defined loading ratio \( R \) and exponent \( n \) in the material block.
+    </p>
+    
+    <p><strong>2. <code>Elastic Energy Approach</code></strong>:<br>
+    \[
+    \Psi_t = 0.5 \boldsymbol{\sigma} : \boldsymbol{\epsilon}
+    \]
+    </p>
+    
+    <p><strong>3. <code>Spectral Activation Approach</code></strong>:<br>
+    \[
+    \Psi_t = 0.5 \boldsymbol{\sigma}^+ : \boldsymbol{\epsilon}
+    \]<br>
+    where \( \boldsymbol{\sigma}^+ \) is the tensile-activated component from spectral decomposition.
+    </p>
+
     </p>
     <!-- System and BCs -->
     <h2>🚀 Multi-Physics System and Boundary Conditions</h2>
