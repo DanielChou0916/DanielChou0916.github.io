@@ -46,54 +46,84 @@
     <h1 align="center">🥱 2D High-Cycle Fatigue by Different Energy Formulations</h1>
 
     <!-- Description Section -->
-    <h2>🚀 Fatigue Mechanism in Phase Field Fracture Mechanics</h2>
+    <h2>🚀 Fatigue Mechanism in Phase Field Fracture</h2>
     <p>
-      The modified phase field governing equation to account for fatigue effect can be formulated by introducing a fatigue degradation function \(f(\bar\alpha)\):  
-      \[\dot d = -L\left(\frac{\partial \Psi_{\text{loc}}}{\partial d} - \kappa(\bar\alpha)\Delta d - \nabla\kappa(\bar\alpha) \cdot \nabla d\right)\] 
-      where \(\Psi_{\text{loc}} = \omega(d)\Psi_{\text{activate}} + f(\bar\alpha)\Psi_{\text{fracture}}\).  
-      Basically, this is equivalent to applying \(f(\bar\alpha)\) to the original critical energy release rate \(G_{c(0)}\), i.e., \(G_c = f(\bar\alpha)G_{c(0)}\).
+      To account for fatigue effects, the phase-field governing equation is modified by introducing a fatigue degradation function \( f(\bar\alpha) \):
     </p>
-    <p>
-      ⚠️ <strong>The fatigue degradation function</strong> is defined as:
+    <p style="text-align: center;">
       \[
-        f(\bar{\alpha}) = \begin{cases}
-          1, & \bar{\alpha} \leq \alpha_{\text{critical}} \\
-          \left( \frac{2 \alpha_{\text{critical}}}{\bar{\alpha} + \alpha_{\text{critical}}} \right)^2, & \bar{\alpha} > \alpha_{\text{critical}}
-        \end{cases}
+      \dot d = -L\left(\frac{\partial \Psi_{\text{loc}}}{\partial d} - \kappa(\bar\alpha)\Delta d - \nabla\kappa(\bar\alpha) \cdot \nabla d\right)
       \]
-      where \( \alpha_{\text{critical}} = 62.5\,\text{MPa} \).<br>
-      This function gradually reduces the material toughness once the accumulated fatigue energy \( \bar{\alpha} \) exceeds the critical threshold.  
-      In early stages, \( f(\bar{\alpha}) = 1 \), meaning no degradation. Once \( \bar{\alpha} > \alpha_{\text{critical}} \), the toughness smoothly drops, which mimics fatigue-induced weakening.
     </p>
     <p>
-     ⚠️ <strong>The fatigue accumulation</strong>, denoted by \(\bar\alpha\), is computed using an incremental cycle-based linear accumulation (ICLA) rule. At a specific step \(t\), it is defined as:  
-      \(\bar\alpha_t = \bar\alpha_{t-1} + \Psi^f_t \times \Delta N_t\),  
-      where \(\Psi^f_t\) is the instantaneous fatigue energy at step \(t\), and \(\Delta N_t = N_t - N_{t-1}\) is the increment in cycle count.
+      The local energy is defined as:
+      \[
+      \Psi_{\text{loc}} = \omega(d)\Psi_{\text{activate}} + f(\bar\alpha)\Psi_{\text{fracture}}
+      \]
     </p>
-    
     <p>
-    ⚠️ <strong>The instantaneous fatigue energy</strong> \( \Psi^f_t \) is computed using the following three formulations.
-    <p><strong>1. Mean Load Approach</strong>:<br>
-    \[
-    \Psi_t = 2E\epsilon_{\text{max}}^2 \left(\frac{1+R}{2}\right)^2 \left(\frac{1+R}{2}\right)^n
-    \]<br>
-    where \( \epsilon_{\text{max}} \) is the maximum principal strain. The loading ratio \( R=0.5 \) and exponent \( n=0.5 \) are adopted.
+      ✅ This effectively applies \( f(\bar\alpha) \) to the original fracture toughness \( G_{c(0)} \), resulting in:
+      \[
+      G_c = f(\bar\alpha) G_{c(0)}
+      \]
+      ✅ Since \( \kappa = \frac{2lf(\bar\alpha)G_{c(0)}}{c_0} \) and \( \Psi_{\text{fracture}} = \frac{f(\bar\alpha)G_{c(0)}}{c_0 l} \alpha(d) \), this scaling is consistently applied across both stiffness and energy terms.
+      ✅ The additional gradient term \( \nabla \kappa \cdot \nabla d \) emerges because \( \kappa \) becomes a spatially varying quantity as \( f(\bar\alpha) \) evolves over the domain.
     </p>
     
-    <p><strong>2. Elastic Energy Approach</strong>:<br>
-    \[
-    \Psi_t = 0.5 \boldsymbol{\sigma} : \boldsymbol{\epsilon}
-    \]
+    <h3>⚠️ Fatigue Degradation Function \( f(\bar\alpha) \)</h3>
+    <p>
+      \[
+      f(\bar\alpha) =
+      \begin{cases}
+        1, & \bar\alpha \leq \alpha_{\text{critical}} \\
+        \left( \frac{2 \alpha_{\text{critical}}}{\bar\alpha + \alpha_{\text{critical}}} \right)^2, & \bar\alpha > \alpha_{\text{critical}}
+      \end{cases}
+      \]
+    </p>
+    <p>
+      where \( \alpha_{\text{critical}} = 62.5 \, \text{MPa} \). This function gradually reduces fracture toughness after the accumulated fatigue energy \( \bar\alpha \) exceeds the threshold, mimicking the progressive weakening observed in real materials.
     </p>
     
-    <p><strong>3. Spectral Activation Approach</strong>:<br>
-    \[
-    \Psi_t = 0.5 \boldsymbol{\sigma}^+ : \boldsymbol{\epsilon}
-    \]<br>
-    where \( \boldsymbol{\sigma}^+ \) is the tensile-activated component from spectral decomposition.
+    <h3>⚠️ Fatigue Accumulation \( \bar\alpha \)</h3>
+    <p>
+      The fatigue history variable \( \bar\alpha \) is updated using the Incremental Cycle-based Linear Accumulation (ICLA) rule:
+      \[
+      \bar\alpha_t = \bar\alpha_{t-1} + \Psi^f_t \times \Delta N_t
+      \]
+      where \( \Psi^f_t \) is the instantaneous fatigue energy and \( \Delta N_t = N_t - N_{t-1} \) is the increment in cycle count.
+    </p>
+    
+    <h3>⚠️ Instantaneous Fatigue Energy \( \Psi^f_t \)</h3>
+    <p>Three formulations are available to compute \( \Psi^f_t \):</p>
+    
+    <p><strong>1. Mean Load Approach</strong> (default):</p>
+    <p style="text-align: center;">
+      \[
+      \Psi_t = 2E\epsilon_{\text{max}}^2 \left( \frac{1+R}{2} \right)^2 \left( \frac{1+R}{2} \right)^n
+      \]
+    </p>
+    <p>
+      where \( \epsilon_{\text{max}} \) is the maximum principal strain. For this benchmark, \( R = 0.5 \), \( n = 0.5 \).
+    </p>
+    
+    <p><strong>2. Elastic Energy Approach:</strong></p>
+    <p style="text-align: center;">
+      \[
+      \Psi_t = 0.5 \boldsymbol{\sigma} : \boldsymbol{\epsilon}
+      \]
+    </p>
+    
+    <p><strong>3. Spectral Activation Approach:</strong></p>
+    <p style="text-align: center;">
+      \[
+      \Psi_t = 0.5 \boldsymbol{\sigma}^+ : \boldsymbol{\epsilon}
+      \]
+    </p>
+    <p>
+      where \( \boldsymbol{\sigma}^+ \) is the tensile-activated part of the stress tensor obtained via spectral decomposition.
     </p>
 
-    </p>
+  
     <!-- System and BCs -->
     <h2>🚀 Multi-Physics System and Boundary Conditions</h2>
     <p align="center">
@@ -105,8 +135,7 @@
   <p>✅ <strong>This is a metallic material with \(E = 210\,\text{GPa}\), \(\nu = 0.3\). Therefore, the AT2 model is adopted, i.e., \(\alpha(d) = d^2\) and \(c_0 = 2\).</strong></p>
   <p>✅ <strong>The simulation includes 38,000 cycles to evaluate fatigue-induced degradation.</strong></p>
   <p>✅ <strong>Stress spectral decomposition is used to split the elastic energy into activated and inactivated components.</strong></p>
-  <p>⚠️ <strong>Note 1:</strong> The energy terms are scaled by fatigue degradation: \(\kappa = f(\bar\alpha)\frac{2G_{c(0)}l}{c_0}\) and \(\frac{1}{c_0}\frac{f(\bar\alpha)G_{c(0)}}{l}\alpha(d)\). This is equivalent to applying \(f(\bar\alpha)\) directly to \(G_{c(0)}\).</p>
-  <p>⚠️ <strong>Note 2:</strong> Reminder: \(\bar\alpha\) denotes accumulated fatigue energy, while \(\alpha(d)\) is the crack geometric function.</p>
+  <p>⚠️ <strong>Reminder:</strong> \(\bar\alpha\) denotes accumulated fatigue energy, while \(\alpha(d)\) is the crack geometric function.</p>
 
     <!-- GIFs -->
     <h2>📊 Simulation Results (Click figure to see animation)</h2>
