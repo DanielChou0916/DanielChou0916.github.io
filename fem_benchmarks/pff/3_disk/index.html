@@ -10,6 +10,35 @@
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
+  <style>
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+    .lightbox-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -19,10 +48,26 @@
     <!-- Description Section -->
     <h2>🚀 Granite Disk Thermal-Induced Fracture</h2>
     <p>
-      A benchmark example is conducted on a 2D plane strain granite disk.  
-      The outer radius is \( R_{\text{out}} = 1 \) m, and the inner heated circular region has a radius of \( R_{\text{in}} = 0.2 \) m.
-      The inner region has higher thermal expansion conefficient \( \alpha_{t(\text{in})} = 4.3e-5\)m/m-C than outer region \( \alpha_{t(\text{out})} = 3.5e-5\)m/m-C, and cracks are not allowed to happend in inner part!<br><br>
-
+      This benchmark explores a 2D plane strain granite disk subjected to thermal loading.  
+      The outer radius is \( R_{\text{out}} = 1 \,\text{m} \), and the inner heated core has a radius of \( R_{\text{in}} = 0.2 \,\text{m} \).
+    </p>
+    <p>
+      🔧 <strong>Basic Setup:</strong><br>
+      • The core region has a higher thermal expansion coefficient:  
+      \( \alpha_{t,\text{core}} = 4.3 \times 10^{-5} \,\text{m/m-°C} \), compared to the outer region:  
+      \( \alpha_{t,\text{outer}} = 3.5 \times 10^{-5} \,\text{m/m-°C} \).<br>
+      • The temperature in the core is increased from 25 °C to 100 °C.
+    </p>
+    <p>
+      🔬 <strong>Four simulation cases:</strong><br>
+      1. <strong>Case 1:</strong> Crack propagation in the core is prevented by setting \( d = 0 \).<br>
+      2. <strong>Case 2:</strong> Crack is allowed everywhere, but \( G_{c,\text{core}} = 3.0 \times 10^{-3} \,\text{MPa·m} \),  
+         \( G_{c,\text{outer}} = 3.0 \times 10^{-5} \,\text{MPa·m} \).<br>
+      3. <strong>Case 3:</strong> Crack is allowed everywhere, and fracture toughness is uniform:  
+         \( G_{c,\text{core}} = G_{c,\text{outer}} = 3.0 \times 10^{-3} \,\text{MPa·m} \).<br>
+      4. <strong>Case 4:</strong> Same as Case 2, but core temperature only rises from 25 °C to 50 °C.
+    </p>
+    <p>
       The model solves three governing equations: phase field fracture (PF), mechanical equilibrium, and heat conduction equation. Their interactions are summarized as:
     </p>
     
@@ -53,28 +98,57 @@
     <p>✅ <strong>Implementation of coupling system by loosely coupled setting.</strong></p>
     <p>✅ <strong>Manually established interaction between thermal and phase field systems.</strong></p>
     <p>
-  ⚠️ <strong>Note 1:</strong> Any physical system is associated with a corresponding energy contribution, which can enter the phase-field fracture governing equation as part of the local driving force term. This is often written as:  
-  \[
-  \frac{\partial \Psi_{\text{loc}}}{\partial d} = \frac{\partial \Psi_{\text{elastic}}}{\partial d} + \frac{\partial \Psi_{\text{fracture}}}{\partial d} + \frac{\partial \Psi_{\text{other}}}{\partial d}
-  \]
-  where \(\Psi_{\text{other}}\) may represent additional physics such as thermal energy (\(\Psi_{\text{thermal}}\)) or fluid energy (\(\Psi_{\text{fluid}}\)) in porous flow systems.
-  However, in a physical sense, thermally induced fracture arises primarily from the <strong>thermal stress</strong>, not from the temperature itself. As a result, it is common practice to <strong>exclude</strong> \(\Psi_{\text{thermal}}\) from the governing phase-field equation.  
-  Instead, temperature-dependent material parameters (e.g., conductivity in the present case) are coupled with the damage variable \(d\), capturing the thermal effects indirectly but effectively.
-</p>
+      ⚠️ <strong>Note 1:</strong> Any physical system is associated with a corresponding energy contribution, which can enter the phase-field fracture governing equation as part of the local driving force term. This is often written as:  
+      \[
+      \frac{\partial \Psi_{\text{loc}}}{\partial d} = \frac{\partial \Psi_{\text{elastic}}}{\partial d} + \frac{\partial \Psi_{\text{fracture}}}{\partial d} + \frac{\partial \Psi_{\text{other}}}{\partial d}
+      \]
+      where \(\Psi_{\text{other}}\) may represent additional physics such as thermal energy (\(\Psi_{\text{thermal}}\)) or fluid energy (\(\Psi_{\text{fluid}}\)) in porous flow systems.
+      However, in a physical sense, thermally induced fracture arises primarily from the <strong>thermal stress</strong>, not from the temperature itself. As a result, it is common practice to <strong>exclude</strong> \(\Psi_{\text{thermal}}\) from the governing phase-field equation.  
+      Instead, temperature-dependent material parameters (e.g., conductivity in the present case) are coupled with the damage variable \(d\), capturing the thermal effects indirectly but effectively.
+    </p>
 
     <p>⚠️ <strong>Note 2:</strong> While using loosely coupled systems may compromise accuracy, extra care on convergence criteria is required.  
       In this case, the nonlinear residual tolerance is set to \( 1 \times 10^{-7} \).
     </p>
     <!-- GIF: Material Response -->
     <h2>🚀 Primary Variables and Material Response</h2>
-    <!-- GIF: Primary Variables -->
-    <p align="center">
-      <img src="primary_variables.gif" alt="primarys" style="width: 100%; max-width: 1000px; height: auto;">
-    </p>  
-    <p align="center">
-      <img src="material_response.gif" alt="responses" style="width: 100%; max-width: 1000px; height: auto;">
-    </p>
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
+    
+      <div style="flex: 1 1 50%; max-width: 400px; text-align: center;">
+        <img src="thumbs/Case 1_thumb.png" style="width: 100%; height: auto; cursor: pointer;"
+             alt="c1" onclick="openLightbox('Case 1.gif')">
+        <p><strong>Case 1: Core Fixed </strong><br></p>
+      </div>
+    
+      <div style="flex: 1 1 50%; max-width: 400px; text-align: center;">
+        <img src="thumbs/Case 2_thumb.png" style="width: 100%; height: auto; cursor: pointer;"
+             alt="c2" onclick="openLightbox('Case 2.gif')">
+        <p><strong>Case 2: Weak Outer Shell</strong><br></p>
+      </div>
+    
+    </div>
 
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
+    
+      <div style="flex: 1 1 50%; max-width: 400px; text-align: center;">
+        <img src="thumbs/Case 3_thumb.png" style="width: 100%; height: auto; cursor: pointer;"
+             alt="c3" onclick="openLightbox('Case 3_intact.gif')">
+        <p><strong>Case 3: Uniform Toughness </strong><br></p>
+      </div>
+    
+      <div style="flex: 1 1 50%; max-width: 400px; text-align: center;">
+        <img src="thumbs/Case 4_thumb.png" style="width: 100%; height: auto; cursor: pointer;"
+             alt="c4" onclick="openLightbox('Case 4_intact.gif')">
+        <p><strong>Case 4: Lower Heating</strong><br></p>
+      </div>
+    
+    </div>
+
+    <p>
+      ✅ <strong>From Case 1 and Case 2, the fracture patterns differ due to whether damage in the core is allowed or not.</strong><br>
+      ✅ <strong>In Case 3, since both core and outer shell share the same toughness, and the core is laterally confined, damage spreads more uniformly. This is likely influenced by the adopted phase-field formulation without elastic energy decomposition — hence compressive stress may also trigger damage. Here, tensile and compressive contributions are differentiated using the <a href="https://www.sciencedirect.com/science/article/abs/pii/S0020768324005298" target="_blank"><strong>finite-epsilon model</strong></a>.</strong><br>
+      ✅ <strong>In Case 4, the crack propagation is less aggressive than in Case 2, which aligns with expectations due to the lower temperature rise.</strong>
+    </p>
     <!-- Navigation Buttons -->
     <hr>
     <div class="button-container-mid">
