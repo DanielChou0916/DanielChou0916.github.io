@@ -49,12 +49,12 @@
     <h2>🚀 Fatigue Mechanism in Phase Field Fracture Mechanics</h2>
     <p>
       The modified phase field governing equation to account for fatigue effect can be formulated by introducing a fatigue degradation function \(f(\bar\alpha)\):  
-      \(\dot d = -L\left(\frac{\partial \Psi_{\text{loc}}}{\partial d} - \kappa(\bar\alpha)\Delta d - \nabla\kappa(\bar\alpha) \cdot \nabla d\right)\),  
+      \[\dot d = -L\left(\frac{\partial \Psi_{\text{loc}}}{\partial d} - \kappa(\bar\alpha)\Delta d - \nabla\kappa(\bar\alpha) \cdot \nabla d\right)\] 
       where \(\Psi_{\text{loc}} = \omega(d)\Psi_{\text{activate}} + f(\bar\alpha)\Psi_{\text{fracture}}\).  
       Basically, this is equivalent to applying \(f(\bar\alpha)\) to the original critical energy release rate \(G_{c(0)}\), i.e., \(G_c = f(\bar\alpha)G_{c(0)}\).
     </p>
     <p>
-      ✅ <strong>The fatigue degradation function</strong> is defined as:
+      ⚠️ <strong>The fatigue degradation function</strong> is defined as:
       \[
         f(\bar{\alpha}) = \begin{cases}
           1, & \bar{\alpha} \leq \alpha_{\text{critical}} \\
@@ -66,13 +66,13 @@
       In early stages, \( f(\bar{\alpha}) = 1 \), meaning no degradation. Once \( \bar{\alpha} > \alpha_{\text{critical}} \), the toughness smoothly drops, which mimics fatigue-induced weakening.
     </p>
     <p>
-      Fatigue accumulation, denoted by \(\bar\alpha\), is computed using an incremental cycle-based linear accumulation (ICLA) rule. At a specific step \(t\), it is defined as:  
+     ⚠️ <strong>The fatigue accumulation</strong>, denoted by \(\bar\alpha\), is computed using an incremental cycle-based linear accumulation (ICLA) rule. At a specific step \(t\), it is defined as:  
       \(\bar\alpha_t = \bar\alpha_{t-1} + \Psi^f_t \times \Delta N_t\),  
       where \(\Psi^f_t\) is the instantaneous fatigue energy at step \(t\), and \(\Delta N_t = N_t - N_{t-1}\) is the increment in cycle count.
     </p>
     
     <p>
-      Three different fatigue energy formulations are used to compute \(\Psi^f_t\):
+    ⚠️ <strong>Instantaneous fatigue energy formulation</strong>: Three different fatigue energy formulations are used to compute \(\Psi^f_t\).
     <p><strong>1. Mean Load Approach</strong>:<br>
     \[
     \Psi_t = 2E\epsilon_{\text{max}}^2 \left(\frac{1+R}{2}\right)^2 \left(\frac{1+R}{2}\right)^n
