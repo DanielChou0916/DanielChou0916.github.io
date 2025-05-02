@@ -171,5 +171,17 @@
     </div>
     <hr>
   </div>
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close">&times;</span>
+  <img class="lightbox-content" id="lightbox-img">
+</div>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById("lightbox").style.display = "block";
+    document.getElementById("lightbox-img").src = src;
+  }
+</script>
+
 </body>
 </html>
