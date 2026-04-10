@@ -110,21 +110,6 @@
     <p>⚠️ <strong>Note 2:</strong> While using loosely coupled systems may compromise accuracy, extra care on convergence criteria is required.  
       In this case, the nonlinear residual tolerance is set to \( 1 \times 10^{-7} \).
     </p>
-    <p>⚠️ <strong>Note 3:</strong> Theoretically, since thermal conductivity \( k \) becomes a spatially varying variable due to its coupling with damage \( d \),  
-    the heat conduction equation should be modified from:  
-    \[
-    \rho c \dot{\theta} - \rho r - k \nabla^2 \theta = 0
-    \]  
-    to:  
-    \[
-    \rho c \dot{\theta} - \rho r - k \nabla^2 \theta - \nabla k \cdot \nabla \theta = 0
-    \]  
-    However, MOOSE does not natively support spatial derivatives of material properties in the heat kernel.  
-    Therefore, for simplicity, the additional term \( \nabla k \cdot \nabla \theta \) is neglected in this benchmark.  
-    <br>
-    One possible workaround is to convert the spatially varying material into an auxiliary variable and then manually define its gradients across each dimension.  
-    This strategy is applied in the fatigue benchmark (<a href="https://danielchou0916.github.io/fem_benchmarks/pff/5_high_cycle_fatigue_metal" target="_blank"><strong>Benchmark 5</strong></a>), but for a similar term in the phase field equation instead.
-    </p>
 
     <!-- GIF: Material Response -->
     <h2>🚀 Primary Variables and Material Response (Click figure to see animation)</h2>
