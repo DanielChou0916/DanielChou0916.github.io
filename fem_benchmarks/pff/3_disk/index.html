@@ -111,6 +111,29 @@
       In this case, the nonlinear residual tolerance is set to \( 1 \times 10^{-7} \).
     </p>
 
+    <p>⚠️ <strong>Note 3:</strong> The heat conduction equation is generally written in divergence form as:
+\[
+\rho c \dot{\theta} - \rho r - \nabla \cdot (k \nabla \theta)=0.
+\]
+
+When the thermal conductivity \( k \) depends on the damage field \( d \), it becomes spatially varying.  
+Although a formal expansion of the divergence term gives:
+\[
+\nabla \cdot (k \nabla \theta)
+= k \nabla^2 \theta + \nabla k \cdot \nabla \theta,
+\]
+this expansion is not required in the weak form formulation.
+
+In particular, when the equation is discretized using the standard weak form,
+\[
+\int_\Omega \nabla \delta \theta \cdot (k \nabla \theta)\, d\Omega,
+\]
+the effect of spatially varying \( k \) is already embedded in the formulation.  
+Therefore, no additional term involving \( \nabla k \) needs to be explicitly implemented.
+
+In the present benchmark, the thermal conductivity is degraded as a function of damage, but the coupling is treated in a simplified manner without a fully consistent linearization (i.e., off-diagonal Jacobian terms are not explicitly included).
+    </p>
+    
     <!-- GIF: Material Response -->
     <h2>🚀 Primary Variables and Material Response (Click figure to see animation)</h2>
     <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
